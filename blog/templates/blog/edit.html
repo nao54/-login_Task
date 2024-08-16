@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Editing Blog</h1>
+<form action="{% url 'blog:edit' article.id %}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Update">
+</form>
+
+<br>
+
+<a href="{% url 'blog:detail' article.id %}">Detail</a> |
+<a href="{% url 'blog:index' %}">Back</a>
+
+{% endblock %}

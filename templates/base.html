@@ -1,0 +1,33 @@
+{% load static %}
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'blog/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  </head>
+
+  <body>
+    <nav>
+      <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'blog:index' %}">Lista de blogs</a></li>
+        <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        <li><a href="{% url 'user_detail' user.pk %}">Información para los miembros</a></li>
+        {% else %}
+        <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        <li><a href="{% url 'signup' %}">Registrar usuario</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <main>
+      <div>
+        {% block main %}
+        {% endblock %}
+      </div>
+    </main>
+  </body>
+
+</html>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Blogs</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th colspan="3"></th>
+  </tr>
+  {% for article in articles %}
+  <tr>
+    <td>{{article.title}}</td>
+    <td>{{article.content}}</td>
+    <td><a href="{% url 'blog:detail' article.id %}">Detail</a></td>
+    <td><a href="{% url 'blog:edit' article.id %}">Edit</a></td>
+    <td><a href="{% url 'blog:delete' article.id %}">Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+<br>
+
+<a href="{% url 'blog:create' %}">New Blog</a>
+
+{% endblock %}
